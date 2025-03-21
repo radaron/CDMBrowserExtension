@@ -1,6 +1,6 @@
 const addButtonAfterMovieName = () => {
     const movieTitleDivElement = document.querySelector('[data-testid=hero__primary-text]').parentElement
-    if (movieTitleDivElement) {
+    if (movieTitleDivElement && !document.querySelector('.cdm-button')) {
         const button = document.createElement('button');
 
         button.innerText = 'CDM';
@@ -29,4 +29,17 @@ link.href = chrome.runtime.getURL('src/content.css');
 document.head.appendChild(link);
 
 
-window.onload = addButtonAfterMovieName;
+// Use MutationObserver to detect when the parent element is rendered
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length) {
+            const movieTitleDivElement = document.querySelector('[data-testid=hero__primary-text]');
+            if (movieTitleDivElement) {
+                addButtonAfterMovieName();
+                observer.disconnect(); // Stop observing once the button is added
+            }
+        }
+    });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
