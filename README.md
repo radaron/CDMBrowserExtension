@@ -5,7 +5,7 @@
    * Open Chrome and go to `chrome://extensions/`.
    * Enable "Developer mode" by toggling the switch in the top right corner.
    * Click on "Pack extension".
-   * In the "Extension root directory" field, select the `src` directory of the project.
+   * In the "Extension root directory" field, select the `cdm` directory of the project.
    * Click "Pack Extension".
 
 3. Distribute the `.crx` file
