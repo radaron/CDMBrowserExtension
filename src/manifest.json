@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "CDM IMDb Button",
+  "version": "1.0",
+  "description": "Adds a button after the movie name on IMDb.com to open CDM page.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.imdb.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
