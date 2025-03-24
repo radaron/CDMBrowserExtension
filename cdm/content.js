@@ -1,17 +1,26 @@
+const storage = (typeof browser !== 'undefined') ? browser.storage : chrome.storage;
+
 const addButtonAfterMovieName = () => {
     const movieTitleDivElement = document.querySelector('[data-testid=hero__primary-text]').parentElement
     if (movieTitleDivElement && !document.querySelector('.cdm-button')) {
         const button = document.createElement('button');
 
-        button.innerText = 'CDM';
         button.className = 'cdm-button';
+        const buttonText = 'CDM';
+        buttonText.split('').forEach((char, index) => {
+            const span = document.createElement('span');
+            span.innerText = char;
+            span.className = `cdm-button__char-${index}`;
+            button.appendChild(span);
+        });
 
-        button.onclick = () => {
+        button.onclick = async () => {
             const url = window.location.href;
             const imdbId = url.split('/').find(part => part.startsWith('tt'));
+            const cdmUrl = await storage.sync.get('cdmUrl');
             if (imdbId) {
                 window.open(
-                    `https://cdm.radaron.hu/manage/download?`
+                    `${cdmUrl.cdmUrl}/manage/download?`
                     +`pattern=${imdbId}&searchWhere=imdb&searchCategory=all_own`,
                     '_blank'
                 );
