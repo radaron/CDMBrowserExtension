@@ -1,2 +1,2 @@
 build:
-	cd cdm && zip -r ../zdm.zip .
+	rm -rf cdm.zip && cd cdm && zip -r ../cdm.zip .

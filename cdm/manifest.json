@@ -1,10 +1,9 @@
 {
   "manifest_version": 3,
   "name": "CDM IMDb Button",
-  "version": "1.0",
-  "description": "Adds a button after the movie name on IMDb.com to open CDM download page.",
+  "version": "1.2",
+  "description": "Adds a button after the movie name on imdb.com to open CDM download page.",
   "permissions": [
-    "activeTab",
     "storage"
   ],
   "options_ui": {
